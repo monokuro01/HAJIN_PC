@@ -5,7 +5,7 @@ h1 {
     font-size: 47px;  /* 大きめのフォント */
     font-weight: bold;
     font-family: arial black, sans-serif;
-    color: black;   /* 深みのある赤 */
+    color: black;
     text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
     letter-spacing: 5px;
     margin: 0;
@@ -122,6 +122,7 @@ button {
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
     font-size: 35px; /* フォントを少し大きく */
+    color: black; 
     width: 300px; /* ボックスの幅を広げる */
     line-height: 1.6; /* 行間を少し広げる */
 }
