@@ -1,6 +1,6 @@
 h1 {
     position: fixed;  /* 画面に固定 */
-    left: 20px;       /* 左端からの距離 */
+    left: 30px;       /* 左端からの距離 */
     bottom: 20px;     /* 下端からの距離 */
     font-size: 45px;  /* 大きめのフォント */
     font-weight: bold;
