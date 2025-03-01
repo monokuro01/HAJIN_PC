@@ -1,0 +1,361 @@
+h1 {
+    position: fixed;  /* 画面に固定 */
+    left: 20px;       /* 左端からの距離 */
+    bottom: 20px;     /* 下端からの距離 */
+    font-size: 40px;  /* 大きめのフォント */
+    font-weight: bold;
+    font-family: arial black, sans-serif;
+    color: black;   /* 深みのある赤 */
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+    letter-spacing: 5px;
+    margin: 0;
+}
+
+body {
+    text-align: center;
+    font-size: 25px;
+    font-family: arial black, sans-serif;
+    color: black;  /* テキストの色を白に（必要に応じて変更可能） */
+    margin: 0;
+    padding: 0;
+    background: white;
+
+}
+/* ボードとラベルを囲むコンテナ */
+.board-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ボード自体の配置 */
+.board {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: repeat(10, 57px);
+    grid-template-rows: repeat(10, 57px);
+    gap: 1px;
+    width: 570px;
+    height: 570px;
+
+
+}
+
+.cell {
+　  width: 57px;
+    height: 57px;
+    border: 1px white;  /* 少し落ち着いた枠線 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(160deg, #DBDBDB, #C9C9C9);
+    box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.6),
+                inset -1px -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.stone {
+    display: inline-block;
+    border-radius: 50%;
+    width: 43.5px;
+    height: 43.5px;
+}
+
+/* 赤い駒のスタイル */
+.red-stone {
+    background: radial-gradient(circle at 30% 30%, #FF7777, #DD2222);
+    box-shadow: inset -2px -2px 5px rgba(0, 0, 0, 0.4),
+                inset 2px 2px 5px rgba(255, 255, 255, 0.5),
+                0px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* 青い駒のスタイル */
+.blue-stone {
+    background: radial-gradient(circle at 30% 30%, #84B2FF, #2255DD);
+    box-shadow: inset -2px -2px 5px rgba(0, 0, 0, 0.4),
+                inset 2px 2px 5px rgba(255, 255, 255, 0.5),
+                0px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.controls {
+    display: flex;
+    gap: 10px; /* ボタンや表示の間隔 */
+    align-items: center; /* 縦方向の中央揃え */
+    position: fixed; /* 画面に固定 */
+    right: 20px; /* 右端からの距離 */
+    bottom: 20px; /* 下端からの距離 */
+    background-color: white; /* 背景色 */
+    padding: 10px; /* 内側の余白 */
+    border-radius: 5px; /* 角を丸める */
+}
+
+#turn {
+    font-size: 13px;
+    margin-right: 20px;
+}
+
+button {
+    padding: 8px;
+    font-size: 12px;
+}
+
+.red-circle {
+    background-color: red;
+}
+
+.blue-circle {
+    background-color: blue;
+}
+
+#game-result {
+    position: fixed;
+    left: 13.8%;
+    top: 50%; /* 画面の中央 */
+    transform: translate(-50%, -50%); /* 完全に中央に配置 */
+    background: rgba(255, 255, 255, 0.9); /* 背景を少し白っぽく */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-size: 35px; /* フォントを少し大きく */
+    color: black;
+    width: 300px; /* ボックスの幅を広げる */
+    line-height: 1.6; /* 行間を少し広げる */
+}
+
+#result-text {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    white-space: pre-line; /* HTMLの改行を反映 */
+}
+#turn {
+    font-size: 15px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 50px; /* 右に移動するための余白 */
+}
+.captured-box {
+    position: fixed;
+    right: -11%;
+    top: 50%; /* 画面の中央 */
+    transform: translate(-50%, -50%); /* 完全に中央に配置 */
+    background: rgba(255, 255, 255, 0.9); /* 背景を少し白っぽく */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-size: 27px; /* フォントを少し大きく */
+    width: 300px; /* ボックスの幅を広げる */
+    line-height: 1.6; /* 行間を少し広げる */
+}
+#text1 {
+    position: fixed; /* 画面の固定 */
+    left: 30.62%;      /* 左端からの距離 */
+    top: 3.2%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text2 {
+    position: fixed; /* 画面の固定 */
+    left: 34.85%;      /* 左端からの距離 */
+    top: 3.2%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text3 {
+    position: fixed; /* 画面の固定 */
+    left: 39.145%;      /* 左端からの距離 */
+    top: 3.2%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text4 {
+    position: fixed; /* 画面の固定 */
+    left: 43.4%;      /* 左端からの距離 */
+    top: 3.2%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text5 {
+    position: fixed; /* 画面の固定 */
+    left: 47.67%;      /* 左端からの距離 */
+    top: 3.2%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text6 {
+    position: fixed; /* 画面の固定 */
+    right: 47.1%;      /* 左端からの距離 */
+    top: 3.2%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text7 {
+    position: fixed; /* 画面の固定 */
+    right: 42.67%;      /* 左端からの距離 */
+    top: 3.2%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text8 {
+    position: fixed; /* 画面の固定 */
+    right: 38.48%;      /* 左端からの距離 */
+    top: 3.2%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text9 {
+    position: fixed; /* 画面の固定 */
+    right: 34.56%;      /* 左端からの距離 */
+    top: 3.2%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text10 {
+    position: fixed; /* 画面の固定 */
+    right: 30.13%;      /* 左端からの距離 */
+    top: 3.2%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text11 {
+    position: fixed; /* 画面の固定 */
+    left: 27.42%;      /* 左端からの距離 */
+    top: 10.3%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text12 {
+    position: fixed; /* 画面の固定 */
+    left: 27.42%;      /* 左端からの距離 */
+    top: 19.3555%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text13 {
+    position: fixed; /* 画面の固定 */
+    left: 27.42%;      /* 左端からの距離 */
+    top: 28.355%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text14 {
+    position: fixed; /* 画面の固定 */
+    left: 27.42%;      /* 左端からの距離 */
+    top: 37.3775%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text15 {
+    position: fixed; /* 画面の固定 */
+    left: 27.42%;      /* 左端からの距離 */
+    top: 46.4%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text16 {
+    position: fixed; /* 画面の固定 */
+    left: 27.42%;      /* 左端からの距離 */
+    top: 55.51%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text17 {
+    position: fixed; /* 画面の固定 */
+    left: 27.42%;      /* 左端からの距離 */
+    top: 64.55%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text18 {
+    position: fixed; /* 画面の固定 */
+    left: 27.42%;      /* 左端からの距離 */
+    top: 73.63%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text19 {
+    position: fixed; /* 画面の固定 */
+    left: 27.42%;      /* 左端からの距離 */
+    top: 82.635%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+#text20 {
+    position: fixed; /* 画面の固定 */
+    left: 26.935%;      /* 左端からの距離 */
+    top: 91.6665%;        /* 上から中央 */
+    transform: translateY(-50%);
+    font-size: 20px; /* フォントサイズ */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+
