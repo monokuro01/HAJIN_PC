@@ -63,8 +63,8 @@ body {
 .stone {
     display: inline-block;
     border-radius: 50%;
-    width: 43.5px;
-    height: 43.5px;
+    width: 42.8px;
+    height: 42.8px;
 }
 
 /* 赤い駒のスタイル */
